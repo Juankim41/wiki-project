@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>나의 위키</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- 🔹 헤더 영역 -->
+  <div id="header"></div>
+
+  <main>
+    <h2>📚 문서 목록</h2>
+    <ul id="post-list">
+      <li>로딩 중입니다...</li>
+    </ul>
+  </main>
+
+  <!-- 🔹 푸터 영역 -->
+  <div id="footer"></div>
+
+  <!-- 🔹 툴팁 박스 -->
+  <div id="tooltip" class="tooltip"></div>
+
+  <!-- 🔹 스크립트 로딩 -->
+  <script src="js/tooltip.js"></script>
+  <script>
+    // 헤더 불러오기
+    fetch('components/header.html')
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById('header').innerHTML = html;
+      });
+  
+    // 푸터 불러오기
+    fetch('components/footer.html')
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById('footer').innerHTML = html;
+      });
+  
+    // 문서 목록 불러오기 및 날짜순 정렬
+    fetch('data/articles.json')
+      .then(res => {
+        if (!res.ok) throw new Error("파일 불러오기 실패");
+        return res.json();
+      })
+      .then(posts => {
+        const list = document.getElementById('post-list');
+        list.innerHTML = '';
+  
+        // 🔽 날짜 기준 내림차순 정렬
+        posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+  
+        if (posts.length === 0) {
+          list.innerHTML = '<li>등록된 문서가 없습니다.</li>';
+        } else {
+          posts.forEach(post => {
+            const li = document.createElement('li');
+            li.innerHTML = `<a href="${post.file}">${post.title}</a> <small>(${post.date})</small>`;
+            list.appendChild(li);
+          });
+        }
+      })
+      .catch(err => {
+        document.getElementById('post-list').innerHTML = `<li>불러오는 중 오류 발생: ${err.message}</li>`;
+      });
+  </script>
+  
+</body>
+</html>

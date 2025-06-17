@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>The Economist: Decision-Making</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <div id="header"></div>
+
+  <main>
+    <h1>The Economist | A Checklist for Decision-Making</h1>
+    <p><em>Published on June 9, 2025</em></p>
+
+    <h2>A.</h2>
+    <p>
+      The ways in which humans can be triggered into making <mark>irrational decisions</mark>
+      <sup class="footnote-ref" data-tooltip="irrational decisions: 논리적이지 않거나 비합리적인 판단 또는 결정">[1]</sup> are many and varied...
+    </p>
+
+    <details>
+      <summary>📘 해석 보기</summary>
+      <p>...번역문...</p>
+    </details>
+
+    <h2>B.</h2>
+    <p>
+      In an ideal world... <mark>biases</mark>
+      <sup class="footnote-ref" data-tooltip="biases: 편향, 특정 방향으로 치우치는 심리적 경향">[4]</sup>
+    </p>
+
+    <details>
+      <summary>📘 해석 보기</summary>
+      <p>...번역문...</p>
+    </details>
+  </main>
+
+  <div id="tooltip" class="tooltip"></div>
+  <div id="footer"></div>
+
+  <script>
+    fetch('../components/header.html').then(res => res.text()).then(html => {
+      document.getElementById('header').innerHTML = html;
+    });
+    fetch('../components/footer.html').then(res => res.text()).then(html => {
+      document.getElementById('footer').innerHTML = html;
+    });
+  </script>
+  <script src="../js/tooltip.js"></script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+
+  <!DOCTYPE html>
+  <html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <title>테스트라구~</title>
+    <link rel="stylesheet" href="../css/style.css">
+  </head>
+  <body>
+    <div id="header"></div>
+  
+    <main>
+      <h1>테스트라구~</h1>
+      <p><em>2025-06-17</em></p>
+      <h2>🔎 3줄 요약</h2>
+<ul>
+<li>홍콩 증시가 다시 활기를 띠며 CATL 등 중국 기업들이 대규모 IPO<sup class="footnote-ref" data-tooltip="IPO: 기업 공개 (Initial Public Offering)">[?]</sup>를 진행 중입니다.  </li>
+<li>하지만 중국 본토 증시는 여전히 침체<sup class="footnote-ref" data-tooltip="침체: 투자 심리와 거래가 모두 위축된 경제 상황">[?]</sup> 상태이며, IPO는 사실상 정지<sup class="footnote-ref" data-tooltip="정지: 승인 절차가 중단된 상태">[?]</sup> 상태에 가깝습니다.  </li>
+<li>미국 제재 회피 등의 우회 전략도 있지만, 구조적 리스크<sup class="footnote-ref" data-tooltip="구조적 리스크: 단기 이슈가 아닌 근본적인 문제로 인한 불안정">[?]</sup>로 회복은 쉽지 않습니다.</li>
+</ul>
+<hr>
+<h2>📖 기사 요약 (The Economist)</h2>
+<p><strong>1. IPO 물결, 홍콩으로 쏠리다</strong><br>중국 기업들이 대거 홍콩에 상장하고 있습니다. 예를 들어 CATL과 Hengrui는 53억 달러 규모의 주식을 매각했으며, Shein은 런던 대신 홍콩 상장을 고려하고 있습니다.<br>👉 <em>현재 추세라면, 홍콩은 올해 전 세계에서 가장 많은 신규 상장이 이루어지는 시장이 될 것입니다.</em></p>
+<p><strong>2. 본토 증시의 침체</strong><br>상하이와 선전은 IPO를 사실상 중단한 상태입니다.<br>중국 증권감독관리위원회(CSRC)는 주식시장의 유동성과 평가절하를 우려하여 승인에 소극적입니다.</p>
+<p><strong>3. 미국 제재 피하기</strong><br>일부 기업은 _&quot;민감 단어&quot;_를 투자 설명서에서 삭제하며 미국 투자자들의 경계심을 낮추고 있습니다.<br>예: Horizon Robotics는 AI<sup class="footnote-ref" data-tooltip="AI: 인공지능 기술">[?]</sup>와 반도체<sup class="footnote-ref" data-tooltip="반도체: 전자제품의 핵심 부품">[?]</sup>를 다루지만, 설명서에는 관련 언급이 없습니다.</p>
+<hr>
+<h2>📌 중요 표현 해석</h2>
+<ul>
+<li><strong>barely functioning</strong>: 거의 작동하지 않음 → 본토 증시의 현재 상태  </li>
+<li><strong>in a funk</strong>: 침체에 빠진  </li>
+<li><strong>creative-writing skills</strong>: 투자 설명서를 잘 꾸며 쓰는 능력</li>
+</ul>
+<hr>
+<h2>📝 TOEFL 스타일 문제 예시</h2>
+<p><strong>Q. 본문의 주요 목적은?</strong><br>(A) 홍콩의 IPO를 칭찬하기 위함<br>(B) 홍콩 IPO의 부활과 본토의 어려움을 함께 분석함<br>(C) 미국의 제재로 인한 혼란을 다룸<br>(D) 중국 주식시장의 미래를 예측함<br>👉 정답: <strong>(B)</strong></p>
+<hr>
+<h2>📎 출처</h2>
+<p><em>The Economist | “Can China reclaim its IPO crown?” (2025.06.15)</em></p>
+
+    </main>
+  
+    <div id="tooltip" class="tooltip"></div>
+    <div id="footer"></div>
+  
+    <script>
+      fetch('../components/header.html').then(res => res.text()).then(html => {
+        document.getElementById('header').innerHTML = html;
+      });
+      fetch('../components/footer.html').then(res => res.text()).then(html => {
+        document.getElementById('footer').innerHTML = html;
+      });
+    </script>
+    <script src="../js/tooltip.js"></script>
+  </body>
+  </html>
+  

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>📄 문서 등록</title>
+  <link rel="stylesheet" href="css/admin.css" />
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+  <header>
+    <h1>📄 문서 등록</h1>
+  </header>
+
+  <main>
+    <!-- 기존 등록 UI -->
+  
+    <label for="title">제목</label>
+    <input id="title" placeholder="예: The Economist - IPO 회복" />
+  
+    <label for="date">날짜</label>
+    <input id="date" type="date" />
+  
+    <label for="markdown">마크다운 입력</label>
+    <textarea id="markdown" placeholder="## 요약\n- 마크다운으로 작성하세요. ^[툴팁 내용]"></textarea>
+  
+    <button id="saveBtn">💾 저장하기</button>
+  
+    <div class="preview" id="preview"></div>
+  
+    <!-- ✅ 여기 아래에 문서 목록 관리 UI 삽입 -->
+    <section id="docManager">
+      <h2>📂 문서 목록 관리</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>제목</th>
+            <th>날짜</th>
+            <th>슬러그</th>
+            <th>편집</th>
+            <th>삭제</th>
+          </tr>
+        </thead>
+        <tbody id="docList">
+          <!-- JS에서 목록이 자동으로 채워짐 -->
+        </tbody>
+      </table>
+    </section>
+  </main>
+  
+
+  <footer>© 2025 나의 위키</footer>
+
+  <script src="js/markdown-editor.js"></script>
+  <script src="js/admin.js"></script> 
+</body>
+</html>
