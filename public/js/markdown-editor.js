@@ -4,9 +4,25 @@ const mdInput = document.getElementById('markdown');
 // ✅ 실시간 마크다운 미리보기 렌더링
 mdInput.addEventListener('input', () => {
   const md = mdInput.value;
-  const rendered = marked.parse(md).replace(/\^\[(.*?)\]/g, (_, tip) =>
-    `<sup class="footnote-ref" data-tooltip="${tip}">[?]</sup>`
-  );
+
+  // footnote 정의 추출
+  const footnotes = {};
+  const footnotePattern = /\[\^(\d+)\]:\s*(.+)/g;
+  let match;
+  while ((match = footnotePattern.exec(md)) !== null) {
+    footnotes[match[1]] = match[2];
+  }
+
+  // 정의부 제거
+  const cleanedMd = md.replace(footnotePattern, '');
+
+  // 마크다운 렌더링 후 footnote 참조 치환
+  let rendered = marked.parse(cleanedMd);
+  rendered = rendered.replace(/\[\^(\d+)\]/g, (_, id) => {
+    const tip = footnotes[id] || 'No tooltip';
+    return `<sup class="footnote-ref" data-tooltip="${tip}">[${id}]</sup>`;
+  });
+
   preview.innerHTML = rendered;
 });
 
@@ -22,11 +38,25 @@ document.getElementById('saveBtn').addEventListener('click', async () => {
     return;
   }
 
-  const htmlContent = marked.parse(md).replace(/\^\[(.*?)\]/g, (_, tip) =>
-    `<sup class="footnote-ref" data-tooltip="${tip}">[?]</sup>`
-  );
+  // footnote 정의 추출
+  const footnotes = {};
+  const footnotePattern = /\[\^(\d+)\]:\s*(.+)/g;
+  let match;
+  while ((match = footnotePattern.exec(md)) !== null) {
+    footnotes[match[1]] = match[2];
+  }
 
-  // ✅ header/footer 및 tooltip.js 내용을 모두 fetch
+  // 정의부 제거
+  const cleanedMd = md.replace(footnotePattern, '');
+
+  // 마크다운 렌더링 후 footnote 참조 치환
+  let htmlContent = marked.parse(cleanedMd);
+  htmlContent = htmlContent.replace(/\[\^(\d+)\]/g, (_, id) => {
+    const tip = footnotes[id] || 'No tooltip';
+    return `<sup class="footnote-ref" data-tooltip="${tip}">[${id}]</sup>`;
+  });
+
+  // ✅ header/footer 및 tooltip.js 내용 fetch
   let header = '', footer = '', tooltipJs = '';
   try {
     const [headerHtml, footerHtml, tooltipScript] = await Promise.all([
@@ -42,7 +72,7 @@ document.getElementById('saveBtn').addEventListener('click', async () => {
     return;
   }
 
-  // ✅ 최종 저장될 HTML (정적 HTML 완성형)
+  // ✅ 최종 저장될 HTML
   const fullHtml = `
   <!DOCTYPE html>
   <html lang="ko">
@@ -75,7 +105,6 @@ document.getElementById('saveBtn').addEventListener('click', async () => {
   </body>
   </html>
   `;
-  
 
   // ✅ 서버에 저장 요청
   fetch('/save', {
@@ -95,48 +124,4 @@ document.getElementById('saveBtn').addEventListener('click', async () => {
       alert('저장 실패');
     }
   });
-
-  // 🔽 문서 목록 불러오기
-fetch('/data/articles.json')
-.then(res => res.json())
-.then(articles => {
-  const tbody = document.getElementById('docList');
-  tbody.innerHTML = '';
-
-  articles
-    .sort((a, b) => new Date(b.date) - new Date(a.date)) // 최신순
-    .forEach(article => {
-      const tr = document.createElement('tr');
-      tr.innerHTML = `
-        <td>${article.title}</td>
-        <td>${article.date}</td>
-        <td>${article.slug}</td>
-        <td><button onclick="editArticle('${article.slug}')">편집</button></td>
-        <td><button onclick="deleteArticle('${article.slug}')">삭제</button></td>
-      `;
-      tbody.appendChild(tr);
-    });
-});
-
-// 🔽 삭제 기능
-function deleteArticle(slug) {
-if (!confirm(`"${slug}" 문서를 삭제하시겠습니까?`)) return;
-
-fetch(`/delete?slug=${slug}`, { method: 'DELETE' })
-  .then(res => {
-    if (res.ok) {
-      alert('삭제 완료');
-      location.reload();
-    } else {
-      alert('삭제 실패');
-    }
-  });
-}
-
-// 🔽 편집 이동 (예정)
-function editArticle(slug) {
-location.href = `/edit?slug=${slug}`; // 향후 편집 페이지로 연결
-}
-
-
 });
