@@ -9,8 +9,16 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
   "dependencies": {
     "express": "^5.1.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Juankim41/wiki-project.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Juankim41/wiki-project/issues"
+  },
+  "homepage": "https://github.com/Juankim41/wiki-project#readme",
+  "description": ""
 }
