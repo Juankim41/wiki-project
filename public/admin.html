@@ -8,49 +8,51 @@
 </head>
 <body>
   <header>
-    <h1>📄 문서 등록</h1>
+    <nav style="display: flex; justify-content: space-between; align-items: center; padding: 10px 20px; background: #333; color: white;">
+      <h1 style="margin: 0;">📄 문서 등록</h1>
+      <a href="index.html" style="text-decoration: none; font-weight: bold; color: white; background: #444; padding: 6px 12px; border-radius: 6px;">🏠 홈으로</a>
+    </nav>
   </header>
 
-  <main>
-    <!-- 기존 등록 UI -->
-  
+  <main style="max-width: 800px; margin: 20px auto; padding: 20px; background: white;">
+    <!-- 🔹 문서 등록/수정 UI -->
     <label for="title">제목</label>
-    <input id="title" placeholder="예: The Economist - IPO 회복" />
-  
+    <input id="title" placeholder="예: The Economist - IPO 회복" style="width: 100%; padding: 10px; margin-bottom: 15px;" />
+
     <label for="date">날짜</label>
-    <input id="date" type="date" />
-  
+    <input id="date" type="date" style="width: 100%; padding: 10px; margin-bottom: 15px;" />
+
     <label for="markdown">마크다운 입력</label>
-    <textarea id="markdown" placeholder="## 요약\n- 마크다운으로 작성하세요. ^[툴팁 내용]"></textarea>
-  
-    <button id="saveBtn">💾 저장하기</button>
-  
-    <div class="preview" id="preview"></div>
-  
-    <!-- ✅ 여기 아래에 문서 목록 관리 UI 삽입 -->
+    <textarea id="markdown" placeholder="## 요약\n- 마크다운으로 작성하세요. ^[툴팁 내용]" style="width: 100%; height: 200px; padding: 10px; margin-bottom: 15px;"></textarea>
+
+    <button id="saveBtn" style="padding: 10px 20px; font-size: 16px;">💾 저장하기</button>
+
+    <hr style="margin: 30px 0;" />
+
+    <!-- 🔹 문서 목록 관리 -->
     <section id="docManager">
       <h2>📂 문서 목록 관리</h2>
-      <table>
+      <table style="width: 100%; border-collapse: collapse; margin-top: 10px;">
         <thead>
-          <tr>
-            <th>제목</th>
-            <th>날짜</th>
-            <th>슬러그</th>
-            <th>편집</th>
-            <th>삭제</th>
+          <tr style="background: #f0f0f0;">
+            <th style="padding: 8px; border: 1px solid #ddd;">제목</th>
+            <th style="padding: 8px; border: 1px solid #ddd;">날짜</th>
+            <th style="padding: 8px; border: 1px solid #ddd;">슬러그</th>
+            <th style="padding: 8px; border: 1px solid #ddd;">편집</th>
+            <th style="padding: 8px; border: 1px solid #ddd;">삭제</th>
           </tr>
         </thead>
         <tbody id="docList">
-          <!-- JS에서 목록이 자동으로 채워짐 -->
+          <!-- JavaScript에서 자동으로 채워짐 -->
         </tbody>
       </table>
     </section>
   </main>
-  
 
-  <footer>© 2025 나의 위키</footer>
+  <footer style="text-align: center; padding: 20px; background: #f5f5f5;">© 2025 나의 위키</footer>
 
+  <!-- 🔹 자바스크립트 파일들 -->
   <script src="js/markdown-editor.js"></script>
-  <script src="js/admin.js"></script> 
+  <script src="js/admin.js"></script>
 </body>
 </html>

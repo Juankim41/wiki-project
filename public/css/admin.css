@@ -24,13 +24,34 @@ body {
     font-weight: bold;
   }
   
-  input, textarea {
+/* 모든 텍스트 입력창 공통 스타일 */
+textarea {
     width: 100%;
-    padding: 10px;
+    padding: 12px;
     margin-top: 5px;
     box-sizing: border-box;
-    font-size: 14px;
+    font-size: 15px;
+    line-height: 1.5;
+    height: 200px; /* 전체 textarea 높이 기본값 설정 */
   }
+  
+  /* ✅ 마크다운 전용: 더 크게 */
+  #markdown {
+    height: 400px;
+    font-size: 16px;
+    line-height: 1.6;
+    resize: vertical;
+  }
+  
+  input {
+    width: 100%;
+    padding: 12px;
+    font-size: 15px;
+    margin-top: 5px;
+    box-sizing: border-box;
+  }
+  
+  
   
   button {
     margin-top: 20px;
